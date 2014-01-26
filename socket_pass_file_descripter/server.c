@@ -80,11 +80,11 @@ int main (int argc, char const *argv[])
 	
 	if((client_fd = accept(socket_fd, (struct sockaddr *) &client_address, &address_length)) > -1 )
 	{
-		printf("clent connected\n");
-		if(send_fd(client_fd, 1) == 0) {
-			printf("fd sended\n");
+		printf("client connected\n");
+		if(send_fd(client_fd, 1) < 0) {
+			perror("send_fd()");
 		} else {
-			perror("send failed\n");
+			printf("fd sended\n");
 		}
 	}
 	
