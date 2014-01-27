@@ -6,6 +6,8 @@
 #include <unistd.h>
 #include <limits.h>
 
+#include "commondef.h"
+
 int send_fd(int socket, int fd_to_send)
 {
 	struct msghdr socket_message;
@@ -56,13 +58,13 @@ int main (int argc, char const *argv[])
 		perror("socket() failed\n");
 	}
 	
-	unlink("./demo_socket");
+	unlink(SOCKET_NAME);
 	
    	/* start with a clean address structure */
     memset(&server_address, 0, sizeof(struct sockaddr_un));
 	
     server_address.sun_family = AF_UNIX;
-    snprintf(server_address.sun_path, sizeof(server_address.sun_path), "./demo_socket");
+    snprintf(server_address.sun_path, sizeof(server_address.sun_path), SOCKET_NAME);
 	
     if(bind(socket_fd, 
             (struct sockaddr *) &server_address, 

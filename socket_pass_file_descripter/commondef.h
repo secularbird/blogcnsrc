@@ -1,0 +1,1 @@
+#define SOCKET_NAME "./demo_socket"
